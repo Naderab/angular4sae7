@@ -1,0 +1,11 @@
+<form (ngSubmit)="ajouter()">
+    Title : <input type="text" name="title" [(ngModel)]="product.title" required minlength="3">
+    Price : <input type="number" name="price" [(ngModel)]="product.price" required min="1">
+    Quantity : <input type="number" name="quantity" [(ngModel)]="product.quantity" required min="1">
+    Picture : <input type="text" name="picture" [(ngModel)]="product.picture" required>
+    <input type="submit" value="Save">
+</form>
+{{product.title}}
+{{product.price}}
+{{product.quantity}}
+{{product.picture}}
