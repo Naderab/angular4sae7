@@ -8,6 +8,7 @@ import { Product } from '../core/product';
 })
 export class AddProductComponent implements OnInit {
   product!:Product;
+  email!:string
   constructor() { }
 
   ngOnInit(): void {

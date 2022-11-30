@@ -1,9 +1,31 @@
-<form (ngSubmit)="ajouter()">
-    Title : <input type="text" name="title" [(ngModel)]="product.title" required minlength="3">
-    Price : <input type="number" name="price" [(ngModel)]="product.price" required min="1">
-    Quantity : <input type="number" name="quantity" [(ngModel)]="product.quantity" required min="1">
-    Picture : <input type="text" name="picture" [(ngModel)]="product.picture" required>
-    <input type="submit" value="Save">
+<form #f="ngForm" (ngSubmit)="ajouter()">
+    Title : <input class="form-control" type="text" name="title" [(ngModel)]="product.title" #title="ngModel" required minlength="3">
+    <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+    <div *ngIf="title.errors?.['required']">Title is required</div>
+    <div *ngIf="title.errors?.['minlength']">Title must have at least 3 characters</div>
+    </div>
+    Price : <input class="form-control" type="number" name="price" [(ngModel)]="product.price" #price="ngModel" required min="1">
+    <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
+    <div *ngIf="price.errors?.['required']">Price is required</div>
+    <div *ngIf="price.errors?.['min']">Price must a positive number</div>
+        </div>
+    Quantity : <input class="form-control" type="number" name="quantity" #quantity="ngModel" [(ngModel)]="product.quantity" required min="1">
+    
+        <div class="alert alert-danger" *ngIf="quantity.touched && quantity.invalid">
+<div *ngIf="quantity.errors?.['required']">Quantity is required</div>
+    <div *ngIf="quantity.errors?.['min']">Quantity must be a number</div>
+    </div>
+    Picture : <input class="form-control" type="text" name="picture" [(ngModel)]="product.picture" #picture="ngModel" required>
+    <div class="alert alert-danger" *ngIf="picture.touched && picture.invalid">
+
+    <div>Picture is required</div>
+    </div>
+    Mail : <input class="form-control" type="text" name="email" [(ngModel)]="email" #emaill="ngModel" pattern="[a-zA-Z]+[0-9]*\.[a-zA-Z0-9]+@esprit.tn$">
+    <div class="alert alert-danger" *ngIf="emaill.touched && emaill.invalid">
+
+    <div>Email invalid</div>
+    </div>
+    <input type="submit" value="Save" class="btn btn-primary" [disabled]="f.invalid">
 </form>
 {{product.title}}
 {{product.price}}
