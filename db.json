@@ -1,0 +1,11 @@
+{
+  "products": [
+    {
+      "title": "tshirt 1",
+      "price": 10,
+      "quantity": 20,
+      "picture": "https://img.freepik.com/psd-gratuit/devant-t-shirt-noir-isole_125540-1167.jpg?w=2000",
+      "id": 1
+    }
+  ]
+}

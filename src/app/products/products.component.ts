@@ -2,6 +2,7 @@ import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular
 import { Product } from '../core/product';
 import { ProductService } from '../services/product.service';
 import { CalculService } from '../services/calcul.service';
+import { ProductCosumerService } from '../services/product-cosumer.service';
 
 @Component({
   selector: 'app-products',
@@ -11,10 +12,15 @@ import { CalculService } from '../services/calcul.service';
 export class ProductsComponent implements OnInit {
   products: Product[]=[];
   c!:number;
-  constructor(private _productService: ProductService, private calcul:CalculService) { }
+  constructor(private _productService: ProductService, private calcul:CalculService,private productConsumer:ProductCosumerService) { }
 
   ngOnInit(): void {
-    this.products = this._productService.productsList;
+    //this.products = this._productService.productsList;
+    this.productConsumer.getProducts().subscribe({
+      next: (data)=>this.products=data, //code : 200 ,204
+      error : (error)=>console.log(error),// code : 500 ,404
+      complete : ()=>console.log("I m finshsing")
+    })
   }
 
   Buy(id:string){
