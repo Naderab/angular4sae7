@@ -1,19 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-sm-6 col-xs-12" *ngFor="let p of products">
-            <div class="card" style="width: 18rem;">
-                <img src={{p.picture}} class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">{{p.title}}</h5>
-                  <p class="card-text">Price : {{p.price}}</p>
-                  <p class="card-text">Quantity : {{p.quantity}}</p>
-                  <p class="card-text">Like : {{p.like}}</p>
-                  <button class="btn btn-primary" (click)="Buy(p.id)" [disabled]="p.quantity == 0">Buy</button>&nbsp;&nbsp;&nbsp;
-                  <button class="btn btn-primary">Like</button>
-
-
-                </div>
-              </div>
+          <app-product [product]="p" (deletProduct)="Delete($event)"></app-product>
         </div>
         <button class="btn btn-primary" (click)="message()"  >msg</button>&nbsp;&nbsp;&nbsp;
         <p class="card-text">calcul : {{c}}</p>
